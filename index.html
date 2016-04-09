@@ -19,8 +19,11 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="project-1" class="anchor" href="#project-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project 1</h3>
+      <h1>
+<a id="project-1" class="anchor" href="#project-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project 1</h1>
+
+<h3>
+<a id="the-science-of-decisions" class="anchor" href="#the-science-of-decisions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The Science of Decisions</h3>
 
 <p>View the project here: <a href="https://docs.google.com/document/d/1Ow6nhTOzt7CVmHbBxsd3Nno_l2L-FLaoeDpQQP8-RVo/edit">https://docs.google.com/document/d/1Ow6nhTOzt7CVmHbBxsd3Nno_l2L-FLaoeDpQQP8-RVo/edit</a></p>
 
@@ -47,6 +50,48 @@
 path <span class="pl-k">=</span> <span class="pl-sr"><span class="pl-k">r</span><span class="pl-pds">'</span>~/Google Drive/DAND/P1/stroopdata<span class="pl-c1">.</span>csv<span class="pl-pds">'</span></span>
 df <span class="pl-k">=</span> pd.read_csv(path)</pre></div>
 
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#check your data</span>
+df.head()</pre></div>
+
+<div>
+<table border="1">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Congruent</th>
+      <th>Incongruent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>12.079</td>
+      <td>19.278</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16.791</td>
+      <td>18.741</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.564</td>
+      <td>21.214</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8.630</td>
+      <td>15.687</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14.669</td>
+      <td>22.803</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 <h3>
 <a id="3-descriptive-stats" class="anchor" href="#3-descriptive-stats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Descriptive stats</h3>
 
@@ -56,6 +101,9 @@ We could also compare the interquartile range (50%-25%).</p>
 
 <div class="highlight highlight-source-python"><pre><span class="pl-c">#describe our dataframe</span>
 df.describe()</pre></div>
+
+<pre><code>test
+</code></pre>
 
 <div>
 <table border="1">
@@ -116,7 +164,38 @@ df.describe()</pre></div>
 
 <p>I'm going to try to use matplotlib and seaborn.</p>
 
-<div class="highlight highlight-source-python"><pre><span class="pl-c"># insert my visualizations here</span></pre></div>
+<div class="highlight highlight-source-python"><pre><span class="pl-c"># set up</span>
+<span class="pl-k">%</span>matplotlib inline
+<span class="pl-k">import</span> seaborn <span class="pl-k">as</span> sns
+<span class="pl-k">import</span> matplotlib.pyplot <span class="pl-k">as</span> plt
+<span class="pl-k">import</span> random</pre></div>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c">#not sure what's going wrong here; dimensional analysis on my data?</span>
+<span class="pl-s"><span class="pl-pds">'''</span></span>
+<span class="pl-s">I got to the code shown; i haven't labeled it and am not sure what the error was. </span>
+<span class="pl-s">I added .any() to the input the sns.rugplot()</span>
+<span class="pl-s">"the truth value of an array..use .any() or .all()"</span>
+<span class="pl-s"><span class="pl-pds">'''</span></span>
+
+plt.hist(df.Congruent,<span class="pl-v">alpha</span><span class="pl-k">=</span><span class="pl-c1">.3</span>)<span class="pl-id">;</span>
+sns.rugplot(df.any())<span class="pl-id">;</span></pre></div>
+
+<p><img src="output_10_0.png" alt="png"></p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-c"># density plot</span>
+sns.kdeplot(df)</pre></div>
+
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1103cd550&gt;
+</code></pre>
+
+<p><img src="output_11_1.png" alt="png"></p>
+
+<div class="highlight highlight-source-python"><pre>sns.lmplot(<span class="pl-s"><span class="pl-pds">'</span>Congruent<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>Incongruent<span class="pl-pds">'</span></span>, <span class="pl-v">data</span><span class="pl-k">=</span>df, <span class="pl-v">fit_reg</span><span class="pl-k">=</span><span class="pl-c1">False</span>)</pre></div>
+
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1107d65d0&gt;
+</code></pre>
+
+<p><img src="output_12_1.png" alt="png"></p>
 
 <h3>
 <a id="5-statistical-tests" class="anchor" href="#5-statistical-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Statistical Tests</h3>
