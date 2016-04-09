@@ -22,6 +22,56 @@ path = r'~/Google Drive/DAND/P1/stroopdata.csv'
 df = pd.read_csv(path)
 ```
 
+
+```python
+#check your data
+df.head()
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Congruent</th>
+      <th>Incongruent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>12.079</td>
+      <td>19.278</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16.791</td>
+      <td>18.741</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.564</td>
+      <td>21.214</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8.630</td>
+      <td>15.687</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14.669</td>
+      <td>22.803</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 ### 3. Descriptive stats
 Two measures of central tendency are the mean and 50%, or median which are (for Congruent) 14.05 and 14.36 [s] respectively.
 One measure of variability is the standard deviation which is 3.56 [s] for Congruent.
@@ -32,6 +82,9 @@ We could also compare the interquartile range (50%-25%).
 #describe our dataframe
 df.describe()
 ```
+
+    test
+
 
 
 
@@ -97,8 +150,62 @@ I'm going to try to use matplotlib and seaborn.
 
 
 ```python
-# insert my visualizations here
+# set up
+%matplotlib inline
+import seaborn as sns
+import matplotlib.pyplot as plt
+import random
 ```
+
+
+```python
+#not sure what's going wrong here; dimensional analysis on my data?
+'''
+I got to the code shown; i haven't labeled it and am not sure what the error was. 
+I added .any() to the input the sns.rugplot()
+"the truth value of an array..use .any() or .all()"
+'''
+
+plt.hist(df.Congruent,alpha=.3);
+sns.rugplot(df.any());
+```
+
+
+![png](output_10_0.png)
+
+
+
+```python
+# density plot
+sns.kdeplot(df)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1103cd550>
+
+
+
+
+![png](output_11_1.png)
+
+
+
+```python
+sns.lmplot('Congruent','Incongruent', data=df, fit_reg=False)
+```
+
+
+
+
+    <seaborn.axisgrid.FacetGrid at 0x1107d65d0>
+
+
+
+
+![png](output_12_1.png)
+
 
 ### 5. Statistical Tests
 
